@@ -1,0 +1,125 @@
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content>
+  <meta name="author" content>
+
+  <title>Toko Resmi Secil Mainan - Detail Produk</title>
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+      body{
+          overflow-x: hidden;
+      }
+  </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row pt-2">
+            <div class="col-12 my-auto">
+                <a href="javascript:history.back()">
+                    <img class="img-fluid" src="back.png" alt="Poster" 
+                    style="height: 50px;">
+                </a>
+                <span class="align-middle" style="font-size: 1rem; font-weight: bold;" id="nama">Poster Sayur - Alat Peraga Pendidikan PAUD TK</span>
+            </div>
+        </div>
+        <div class="row my-2 justify-content-bentween align-items-top">
+            <div class="col-lg-5 col-sm-5 col-5 text-center">
+                <img src="poster-sayur.png" class="img-fluid" id="image" style="width: 70%;">
+                    <h4 id="harga" class="harga-detail text-center">Rp. 12.000,.</h4>
+            </div>
+            <div class="col-lg-7 col-sm-7 col-7 align top">
+                <p class="deskripsi" id="deskripsi">
+                    Poster Sayur - Alat Peraga Pendidikan TK PAUD
+                    Poster Mengenal Sayur Untuk Anak
+                    
+                    Art Paper 310 gsm Tebal Warna Putih bukan poster murah yang warna coklat
+                    Ukuran A3 Plus (32cm x 48cm) Sangat Besar
+                    Usia : TK atau SD
+                
+                Note : GRATIS Pipa Selongsongan, dijamin Poster Aman Sampai Tujuan"
+                </p>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class=" p-1">
+                    <a href="https://shopee.co.id/Poster-Hijaiyah-Alif-Ba-Ta-Alat-Peraga-Pendidikan-TK-SD-i.231253526.4018941959" id="shopee" target="_BLANK">
+                        <img class="img-fluid" src="beli-shopee.png" >
+                    </a>
+                </div>
+                <div class=" p-2">
+                    <a href="https://www.tokopedia.com/secilmainan/poster-huruf-abc-alat-peraga-pendidikan-paud-tk" id="tokped" target="_BLANK">
+                        <img class="img-fluid" src="beli-tokped.png" >
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    <footer class="fixed-bottom bg-light">
+        <div class="container">
+            <p class="m-0 text-center text-dark">Copyright &copy; 2020 Solite Kids</p>
+        </div>
+    </footer>
+
+
+  
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        $( document ).ready(function() {
+    
+            var id = localStorage.getItem("produkId");
+            var jenis = localStorage.getItem("jenis");
+        
+            console.log( id );
+            $.getJSON("produk.json", function(result){
+                const dospace = "https://solitekids.sgp1.digitaloceanspaces.com/marketplace/";
+                if(jenis == "poster"){
+                    $.each(result.poster, function(i, data){
+                        if(data.id == id){
+                            let image_url = dospace + data.image;
+                            $('#nama').text(data.nama);
+                            $('#image').attr('src', image_url);
+                            $('#deskripsi').text(data.deskripsi);
+                            $('#harga').text(data.harga);
+                            $('#tokped').attr('href', data.tokped);
+                            $('#shopee').attr('href', data.shopee); 
+                        }
+                    });
+                }else{
+                    $.each(result.flashcard, function(i, data){
+                        if(data.id == id){
+                            let image_url = dospace + data.image;
+                            $('#nama').text(data.nama);
+                            $('#image').attr('src', image_url);
+                            $('#deskripsi').text(data.deskripsi);
+                            $('#harga').text(data.harga);
+                            $('#tokped').attr('href', data.tokped);
+                            $('#shopee').attr('href', data.shopee); 
+                        }
+                    });
+
+                }
+                
+            });
+        }); 
+</script> 
+
+<script>
+    // var name=localStorage.getItem("firstname");
+    // console.log(name);
+    // window.onload = alert(localStorage.getItem("storageName"));
+</script> 
+    </div>
+
+</body>
+</html>
